@@ -17,6 +17,9 @@ export const createTodoData = (req: Request, res: Response) => {
 
 export const getTodoDataById = (req: Request, res: Response) => {
   const id = Number(req.params.id);
+  if (isNaN(id)) {
+    return res.handleError({ message: "Invalid ID format" }, 400);
+  }
   const data = findId(id);
   if (!data) {
     return res.handleError({ message: "Todo not found" }, 404);
@@ -26,6 +29,9 @@ export const getTodoDataById = (req: Request, res: Response) => {
 
 export const deleteTodoData = (req: Request, res: Response) => {
   const id = Number(req.params.id);
+  if (isNaN(id)) {
+    return res.handleError({ message: "Invalid ID format" }, 400);
+  }
   const data = deleteTodo(id);
   if (!data) {
     return res.handleError({ message: "Todo not found" }, 404);
@@ -35,6 +41,9 @@ export const deleteTodoData = (req: Request, res: Response) => {
 
 export const updateTodoData = (req: Request, res: Response) => {
   const id = Number(req.params.id);
+  if (isNaN(id)) {
+    return res.handleError({ message: "Invalid ID format" }, 400);
+  }
   const data = updateTodo(id, req.body);
   if (!data) {
     return res.handleError({ message: "Todo not found" }, 404);
