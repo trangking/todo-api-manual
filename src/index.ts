@@ -14,8 +14,13 @@ app.use((req, res, next) => {
 });
 
 app.use("/", router);
+
 app.use((req, res) => {
   return res.handleError({ message: "Route not found" }, 404);
+});
+app.use((err, req, res, _next) => {
+  console.error(err.stack);
+  return res.handleError({ message: "Internal Server Error" }, 500);
 });
 
 app.listen(port, () => {
