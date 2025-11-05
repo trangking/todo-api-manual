@@ -13,6 +13,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res) => {
+  return res.handleError({ message: "Route not found" }, 404);
+});
+
 app.use("/", router);
 
 app.listen(port, () => {

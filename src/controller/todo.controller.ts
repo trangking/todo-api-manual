@@ -12,7 +12,7 @@ export const createTodoData = (req: Request, res: Response) => {
   const newTodo = req.body;
 
   const savedTodo = saveTodo(newTodo);
-  res.handleCreated(savedTodo);
+  return res.handleCreated(savedTodo);
 };
 
 export const getTodoDataById = (req: Request, res: Response) => {
@@ -24,7 +24,7 @@ export const getTodoDataById = (req: Request, res: Response) => {
   if (!data) {
     return res.handleError({ message: "Todo not found" }, 404);
   }
-  res.handleSuccess(data);
+  return res.handleSuccess(data);
 };
 
 export const deleteTodoData = (req: Request, res: Response) => {
@@ -36,7 +36,7 @@ export const deleteTodoData = (req: Request, res: Response) => {
   if (!data) {
     return res.handleError({ message: "Todo not found" }, 404);
   }
-  res.handleSuccess(id, "Todo deleted successfully");
+  return res.handleSuccess(id, "Todo deleted successfully");
 };
 
 export const updateTodoData = (req: Request, res: Response) => {
@@ -48,5 +48,5 @@ export const updateTodoData = (req: Request, res: Response) => {
   if (!data) {
     return res.handleError({ message: "Todo not found" }, 404);
   }
-  res.handleSuccess(data, "Todo updated successfully");
+  return res.handleSuccess(data, "Todo updated successfully");
 };
